@@ -1,8 +1,6 @@
 var currScene = -1;
-var isAngry = false;
-var isStudy = false;
 var knowName = false;
-var happy = false;
+var isHappy = false;
 var elem = document.getElementById('next');
 elem.addEventListener("click", changeScene);
 var userName = "";
@@ -60,9 +58,9 @@ function changeScene() {
             giveOptions(7);
             break;
         case 7:
-            giveOptions(7);
             break;
         case 8:
+            isHappy = true;
             speaker.innerHTML = userName;
             dial.innerHTML = "I'm so sorry! I should have been watching where I was going. My name is " + userName + ". It's nice to meet you...err..what's your name again?";
             dial.style.color = "white";
@@ -78,15 +76,15 @@ function changeScene() {
             break;
         case 11:
             speaker.innerHTML = userName;
-            dial.innerHTML = "EHHHH??? I can't be late again!!";
+            dial.innerHTML = "EHHHH??? Today is school! I can't be late again!!";
             break;
         case 12:
-            dial.innerHTML = "I hurriedly run off towards class, leaving the cat behind me.";
+            dial.innerHTML = "I hurriedly off towards class, leaving the cat behind me.";
             dial.style.color = "aqua";
             break;
         case 13:
             changeBG("School");
-            dial.innerHTML = "Suddenly, I finally get to class and manage to sneak into the room without anyone noticing. I sit down at my desk and already I'm beginning to daydream. I look over at the desk that's always empty next to me wonder why that classmate never comes to class.";
+            dial.innerHTML = "Suddenly, I finally quickly get to class and manage to sneak into the room without anyone noticing. I sit down at my desk and already I'm beginning to daydream. I look over at the desk that's always empty next to me wonder why that classmate never comes to class.";
             changeProfile("remove");
             break;
         case 14:
@@ -119,10 +117,17 @@ function changeScene() {
             dial.innerHTML = "I decide to stay at school to study for a while I was just gathering my books and getting ready to leave when I see a shadow appear over my desk. An especially handsome shadow.";
             break;
         case 21:
-            speaker.innerHTML = "Meow Meow";
-            dial.innerHTML = "Are you staying behind to study? I don't mean to bother you but...perhaps we could study together?";
-            dial.style.color = "white";
-            changeProfile("meowShy");
+            if (knowName) {
+                speaker.innerHTML = "Meow Meow";
+                dial.innerHTML = "Are you staying behind to study? I don't bother you but...perhaps we could study together?";
+                dial.style.color = "white";
+                changeProfile("meowShy");
+            } else {
+                speaker.innerHTML = "????";
+                dial.innerHTML = "You heathen! I need to study withs omeone but there is literally not one else in this school as you can see from al these empty desks. Let me study with you."
+                dial.style.color = "white";
+                changeProfile("meowNormal");
+            }
             break;
         case 22:
             speaker.innerHTML = userName;
@@ -143,10 +148,18 @@ function changeScene() {
             changeProfile("remove");
             break;
         case 25:
-            dial.innerHTML = "We studied together for a while. I feel as if we became closer as friends during this time. During a period of silence between us, I finally worked up the courage to ask Meow Meow why he never came to school.";
+            if (!knowName) {
+                dial.innerHTML = "We studied in silence together for a while and I finally learned that cat's name was Meow Meow because he told me it was. After a while, I suddenly slowly worked up the courage to ask him why he was such a meanie beanie.";
+            } else {
+                dial.innerHTML = "We studied together for a while. I feel  if we became closer as friends during this time. During a period of silence between us, I finally worked up the courage to ask Meow Meow why he never came to school.";
+            }
             break;
         case 26:
-            dial.innerHTML = "Hey Meow Meow? I hope you don't mind me asking but...why don't you ever come to classes?";
+            if (knowName) {
+                dial.innerHTML = "Hey Meow Meow? I hope you don't mind me asking but...why havent you ever to classes?";
+            } else {
+                dial.innerHTML = "Hey Meow Meow? I hope you dont mind me asking but...why are you literally so mean?";
+            }
             dial.style.color = "white";
             changeProfile("meowNormal");
             break;
@@ -198,7 +211,7 @@ function changeScene() {
             break;
         case 37:
             placeOverlay();
-            dial.innerHTML = "Suddenly, the lights turned off signalling that the school was closed. We had been so busy staring at each other's faces that we didnt even notice how late it had gotten! Suddenly the day had ended and it was time to go home.";
+            dial.innerHTML = "Suddenly, the lights off signalling that the school was closed. We had been so busy staring at each other's faces that we didnt even notice how late it had gotten! Suddenly the day had ended and it was time to go home.";
             break;
         case 38:
             speaker.innerHTML = "Meow Meow";
@@ -295,7 +308,7 @@ function changeScene() {
         case 57:
             changeBG("School");
             changeProfile("remove");
-            dial.innerHTML = "I made it to school before classes started. The cat was wrong about what time it was because cats cant tell time.";
+            dial.innerHTML = "I run off and I made it to school before classes started. The cat was wrong about what time it was because cats cant tell time.";
             break;
         case 58:
             dial.innerHTML = "I was sitting at my desk, absentmindedly looking out the window when class started. I was bored so I did not pay attention.";
@@ -315,26 +328,208 @@ function changeScene() {
             dial.style.color = "aqua";
             break;
         case 62:
-            dial.innerHTML = "I'm sorry! I was rushing to class!! Er...What's your name again?";
+            dial.innerHTML = "WHY IS THERE A CAT IN THE SCHOOOOOOOOLLL?????";
             dial.style.color = "white";
             break;
         case 63:
-            speaker.innerHTML = "Meow Meow";
-            dial.innerHTML = "Hmph. So rude. My name is Meow Meow and you will do well to remember that.";
-            changeProfile("meowNormal");
+            speaker.innerHTML = "????";
+            dial.innerHTML = "APOLOGIZE YOU CRETIN!!!!";
             break;
         case 64:
             speaker.innerHTML = userName;
-            dial.innerHTML = "Meow Meow sat down at one of the many empty desks with a huff. Then the bell rang ending classes for the day.";
+            dial.innerHTML = "Our commotion attracted the attention of our teacher who, turned around and suddenly gasped when she saw the cat.";
             dial.style.color = "aqua";
             break;
-        case 64:
+        case 65:
+            speaker.innerHTML = "teacher";
+            dial.innerHTML = "Oh goodness why is there is cat here????? Mr.Cat-Sir!!!! You should not be here!!";
+            changeProfile("meowNormal");
+            dial.style.color = "white";
+            break;
+        case 66:
+            dial.innerHTML = "Your should be in the advance classes!!! THis calss is far too low level for you! I must get you to the right class right away!";
+            break;
+        case 67:
             speaker.innerHTML = userName;
-            dial.innerHTML = "Meow Meow sat down "
-        case 100:
-            dial.innerHTML = "testing";
+            dial.innerHTML = "The teacher picked up the cat and suddenly carried him off to another classroom.";
+            dial.style.color = "aqua";
+            currScene = 18;
+            break;
+        //BRANCH FOR NOT STAYING TO STUDY AND LEAVING LIKE A DUMBASS
+        case 68:
+            changeBG("DayStreet");
+            dial.innerHTML = "HAH! Once again I have foiled the attempts of school at attempting to confine me to its prison. I shall prevail! Fools know not my strength!";
+            break;
+        case 69:
+            dial.innerHTML = "I step out past the door of the school and let the sunlight warm me after being trapped in the cold stagnant air of the school. A bird chirped in the distance and I began analyzing the metaphorical significance of birds in my moment of freedom and revelry.";
+            break;
+        case 70:
+            if (isHappy) {
+                dial.innerHTML = "But what is this?? A shadow has encroached upon my path! A...particularly handsome shadow?? Who could this shadow belong to?";
+            } else {
+                dial.innerHTML = "But what is this?? A shadow has encroached upon my path! My happiness was suddenly banished when I heard a familiar voice echoing from the empty school halls behind me.";
+            }
+            break;
+        case 71:
+            dial.style.color = "white";
+            if (!knowName) {
+                changeProfile("meowAngry");
+                speaker.innerHTML = "????";
+                dial.innerHTML = userName + "!!!!!!!!!!!!! ANATA WA WATASHI KARA NIGETE IMASENNNNNNN. GET BACK HERE YOU BAKA!!!";
+            } else {
+                changeProfile("meowNormal");
+                speaker.innerHTML = "Meow Meow";
+                dial.innerHTML = userName + ", chotto mate!";
+            }
+            break;
+        case 72:
+            dial.style.color = "aqua";
+            speaker.innerHTML = userName;
+            if (!isHappy) {
+                dial.innerHTML = "It was the cat from before! Dare he challange me so brashly??";
+            } else {
+                dial.innerHTML = "Meow Meow came rushing towards me with...is that a slight blush on his face???";
+            }
+            break;
+        case 73:
+            dial.style.color = "white";
+            if (!isHappy) {
+                speaker.innerHTML = userName;
+                dial.innerHTML = "I have no reason to apologize to some fantastical speaking feline! State your purpose you devil-spawn, and perhaps through repentance the gods shall have mercy upon your soul!";
+            } else {
+                speaker.innerHTML = "Meow Meow";
+                dial.innerHTML = "D-d-d-d-do you uh, do you want to walk home together?";
+                /////////////////////////////////////////////////////////////////////////////////////////////
+            }
+            break;
+        //FIGHT
+        case 74:
+            speaker.innerHTML = "Meow Meow";
+            dial.innerHTML = "You FOOL! No one insults the great Meow Meow and gets away with it! I shall vanquish you back to the hell hole you crawled out of!";
+            break;
+        case 75:
+            speaker.innerHTML = userName;
+            dial.innerHTML = "Why you--! No one insults my mother like that!!!! Not even someone with a name as cute as Meow Meow!! Prepare for battle you fiend!";
+            giveOptions(75);
+            break;
+        case 76:
+            dial.style.color = "aqua";
+            dial.innerHTML = "I leapt at the foe, arms raised, knives out, ready to restore the justice to my mother's name. Both of us were so over powered that the fight took only half a second to complete and it was really really cool and awesome. In the end however, I remained standing as the victor.";
+            break;
+        case 77:
+            speaker.innerHTML = "Meow Meow";
+            dial.innerHTML = "I..I underestimated you....You are far stronger than you seem.";
+            changeProfile("meowHurt");
+            dial.style.color = "white";
+            break;
+        case 78:
+            speaker.innerHTML = userName;
+            dial.innerHTML = "I stood on the street, cradling a bloodied Meow Meow in my arms. Suddenly, I saw raindrops dripping down from the sky....but..the sky is clear. Oh..";
+            dial.style.color = "aqua";
+            break;
+        case 79:
+            dial.innerHTML = "I'm crying.";
+            break;
+        case 80:
+            speaker.innerHTML = "Meow Meow";
+            dial.innerHTML = "Thank you " + userName + ". You've taught me.. true strength....I no longer need to hide behind my mask of machoness...I can finally...be myself.";
+            changeProfile("meowHurtHappy");
+            dial.style.color = "white";
+            break;
+        case 81:
+            speaker.innerHTML = userName;
+            dial.innerHTML = "With his final breath, Meow Meow gave me one last tearful smile, and was gone.";
+            dial.style.color = "aqua";
+            break;
+        case 82:
+            speaker.innerHTML = userName;
+            dial.innerHTML = "NOOOOOOOOOOOOOOOOOOO WHY MUST OUR MACHONESS GET BETWEEN TRUE LOOOOOOOVVVEEEEE?????!!!?!?!?!?!?!?!";
+            dial.style.color = "white";
+            dial.style.fontSize = "30px";
+            break;
+        case 83:
+            changeProfile("remove");
+            dial.innerHTML = "Anyways I went home and went to sleep because it was late I guess.";
+            changeBG("Room");
+            placeOverlay();
+            dial.style.fontSize = "17px";
+            break;
+        //NO FIGHT
+        case 84:
+            speaker.innerHTML = userName;
+            dial.innerHTML = "Actually...Meow Meow! I have a proposition for you! Let us set down our weapons, and instead use the power of love to remedy the pain we have caused one another!";
+            dial.style.color = "white";
+            break;
+        case 85:
+            speaker.innerHTML = "Meow Meow";
+            dial.innerHTML = ".............";
+            changeProfile("meowNormal");
+            break;
+        case 86:
+            changeProfile("meowAngry");
+            dial.innerHTML = "NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO";
+            dial.style.fontSize = "30px";
+            break;
+        case 87:
+            dial.style.fontSize = "17px";
+            speaker.innerHTML = userName;
+            dial.innerHTML = "In the blonk of an eye, Meow Meow slashed his claws at me and slightly scratched my forearm. The searing pain gently tingled and somewhat itched as I collapsed in pain, writhing on the concrete floor.";
+            break;
+        case 88:
+            dial.innerHTML = "Although it was my forearm that Meow Meow's claws slightly abrased, it was my heart that was torn in twain.";
+            break;
+        case 89:
+            dial.innerHTML = "Meow Meow looked down at my crumpled figure. And with a smirk, he turned and left, never to be seen by me again.";
+            break;
+        case 90:
+            speaker.innerHTML = userName;
+            dial.style.color = "white";
+            dial.innerHTML = "Ewwwww no, you're like literally a cat??? If i walk back with you people will get too jealous and I'll become a possible target of robbings!";
+            break;
+        case 91:
+            dial.style.color = "aqua";
+            dial.innerHTML = "My words seemed to leave Meow Meow wounded. Tears flowed freely down him furry little cheeks, like ravines cutting through fields of grass but instead ot was fur instead of grass.";
+            break;
+        case 92:
+            dial.style.color = "white";
+            speaker.innerHTML = "Meow Meow";
+            dial.innerHTML = "Thanks ok...I..I--";
+            changeProfile("meowTear");
+            break;
+        case 92:
+            changeProfile("meowConfess");
+            dial.innerHTML = "I DONT NEEE DYOU ANYWAAAAAAAAAAAAAAAAAAAAAYS";
+            dial.style.fontSize = "30px";
+            break;
+        case 93:
+            dial.style.fontSize = "17px";
+            dial.style.color="aqua";
+            speaker.innerHTML = userName;
+            dial.innerHTML = "With that, Meow Meow left screaming into the night and I never saw him again.";
+            break;
+        case 94:
+            changeBG("Room");
+            changeProfile("remove");
+            dial.innerHTML = "Anyways, I went home and slept or someting I guess yea";
+            break;
+        //MAKE A JOKE ROUTE
+        case 95:
+            speaker.innerHTML = userName;
+            dial.innerHTML = "Haha, are you \"feline-ing\" down??";
+            dial.style.color = "white";
+            break;
+        case 96:
+            dial.style.color = "aqua";
+            dial.innerHTML = "Suddenly, a loud blast blasted from Meow Meow. His anger had compressed so much that it had turned into a bomb!";
+            break;
+        case 97:
+            dial.innerHTML = "The resulting blast from Meow Meow's anger left no survivors. Earth was disintegrated and everyone died...Except for me. I alone remain to record the story of our world. But who shall be left to read it?";
+            break;
+        case 98:
+            dial.innerHTML = "Anyways, I walked home and went to sleep.";
             break;
         default:
+            alert(currScene);
             dial.innerHTML = "this aint right";
             var num = prompt("enter scene");
             currScene = num;
@@ -368,7 +563,7 @@ function giveOptions(sceneNum) {
             var two = document.getElementById("option_2");
 
             one.addEventListener('click', afterOptions(7));
-            two.addEventListener("click", afterOptions(99));
+            two.addEventListener("click", afterOptions(56));
             break;
         case 19:
             var optionOne = "Stay behind and study a bit. Your dumb butt could use some schooling.";
@@ -378,7 +573,7 @@ function giveOptions(sceneNum) {
             var two = document.getElementById("option_2");
 
             one.addEventListener('click', afterOptions(19));
-            two.addEventListener("click", afterOptions(99));
+            two.addEventListener("click", afterOptions(67));
             break;
         case 22:
             var optionOne = "Of course! How many chances do you get to study with a cat?? <br> Heck, he's probably smarter than you anyways.";
@@ -387,7 +582,7 @@ function giveOptions(sceneNum) {
             var one = document.getElementById("option_1");
             var two = document.getElementById("option_2");
 
-            one.addEventListener('click', afterOptions(99));
+            one.addEventListener('click', afterOptions(99999999999999999));
             two.addEventListener("click", afterOptions(22));
             break;
         case 30:
@@ -397,7 +592,7 @@ function giveOptions(sceneNum) {
             var one = document.getElementById("option_1");
             var two = document.getElementById("option_2");
 
-            one.addEventListener('click', afterOptions(99));
+            one.addEventListener('click', afterOptions(94));
             two.addEventListener("click", afterOptions(30));
             break;
         case 38:
@@ -408,7 +603,7 @@ function giveOptions(sceneNum) {
             var two = document.getElementById("option_2");
 
             one.addEventListener('click', afterOptions(38));
-            two.addEventListener("click", afterOptions(99));
+            two.addEventListener("click", afterOptions(89));
             break;
         case 45:
             var optionOne = "YES";
@@ -419,6 +614,16 @@ function giveOptions(sceneNum) {
 
             one.addEventListener('click', afterOptions(45));
             two.addEventListener("click", afterOptions(50));
+            break;
+        case 75:
+            var optionOne = "Wait! This is not the time for a fight! There are better ways to resolve this!!";
+            var optionTwo = "ANATA WA WATASHI NO TE DE SHINUDESHOUUUUUUUUUUUUU!!!!!!!!!!";
+            document.getElementById("options").innerHTML = "<button class=\"option\" id=\"option_1\"> " + optionOne + " </button> <button class=\"option\" id=\"option_2\">" + optionTwo + " </button>";
+            var one = document.getElementById("option_1");
+            var two = document.getElementById("option_2");
+
+            one.addEventListener('click', afterOptions(83));
+            two.addEventListener("click", afterOptions(75));
             break;
     }
 }
@@ -436,9 +641,9 @@ function afterOptions(newScene) {
 function placeOverlay() {
     var overlay = document.createElement("div");
     document.getElementById("background").appendChild(overlay);
-    overlay.style.position="fixed";
-    overlay.style.width="100%";
-    overlay.style.height="100%";
+    overlay.style.position = "fixed";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
     overlay.style.backgroundColor = "rgba(0,0,0,.7)";
     overlay.id = "overlay";
 }
